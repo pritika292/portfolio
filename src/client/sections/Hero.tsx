@@ -17,8 +17,10 @@ export function Hero() {
           platforms that serve <strong className="text-text">100k+ users</strong> with React,
           Node.js, TypeScript, Kubernetes, Kafka, Redis, and MySQL.{" "}
           <strong className="text-text">End-to-end builder who wants high ownership</strong>: the
-          API, the SQL plan, the React, the Dockerfile, and the deploy all from one person. Move
-          fast, ramp in days, ship the same week. Open to senior backend and distsys roles at top
+          API, the SQL plan, the React, the Dockerfile, and the deployment all from one person.{" "}
+          <strong className="text-text">AI-native developer workflow</strong>: Claude Code, Copilot
+          CLI, MCP servers, and custom agent skills shipped to production. Moves fast, ramps in
+          days, ships same week. Open to fullstack, backend, and distributed systems roles at top
           startups.
         </p>
         <p className="mt-4 text-muted font-mono text-[13px] tracking-wide">
