@@ -1,7 +1,6 @@
 export function Hero() {
   return (
     <section className="relative">
-      <div className="hero-mesh" aria-hidden />
       <div className="relative pt-12 pb-6 md:pt-16 md:pb-8">
         <h1 className="font-display font-semibold text-[clamp(56px,10vw,108px)] leading-[0.92] tracking-[-0.02em]">
           Pritika

@@ -17,6 +17,7 @@ export function App() {
   useVisitBeacon();
   return (
     <>
+      <div className="hero-mesh" aria-hidden />
       <Header />
       <div className="page-grid max-w-page mx-auto px-6">
         <div className="page-grid__hero fr-fade-up">
