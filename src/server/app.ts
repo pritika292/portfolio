@@ -45,7 +45,7 @@ export function createApp(): Express {
       express.static(path.join(CLIENT_DIST, "assets"), { immutable: true, maxAge: "1y" }),
     );
     // Static files in /public are emitted to dist/client at build time
-    // (favicon, resume.pdf, og-image.png, fonts).
+    // (favicon, pritika_resume.pdf, og-image.png, fonts).
     app.use(express.static(CLIENT_DIST, { index: false }));
     // SPA fallback — single-page site, so any GET serves index.html.
     app.get("/", (_req, res) => {

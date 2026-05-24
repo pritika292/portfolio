@@ -50,7 +50,7 @@ export function Footer() {
               <polyline points="22,6 12,13 2,6" />
             </svg>
           </IconLink>
-          <IconLink href="/resume.pdf" label="Résumé">
+          <IconLink href="/pritika_resume.pdf" label="Résumé">
             <svg
               width="18"
               height="18"
