@@ -489,6 +489,11 @@ a.inline-link:focus-visible::after {
 .company-row__sep {
   opacity: 0.6;
 }
+.company-row__duration {
+  margin-left: 4px;
+  color: var(--text);
+  opacity: 0.85;
+}
 .company-row__arrow {
   display: inline-flex;
   color: var(--muted);
@@ -651,6 +656,11 @@ a.inline-link:focus-visible::after {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
+}
+.section-heading__meta {
+  letter-spacing: 0.12em;
+  color: var(--text);
+  opacity: 0.7;
 }
 .section-heading::before {
   content: "";
