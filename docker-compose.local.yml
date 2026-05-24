@@ -1,0 +1,12 @@
+# Local container-based dev. Maps 3013:3013 so the browser can hit the
+# containerized site directly. No external network needed.
+
+services:
+  app:
+    build: .
+    container_name: portfolio-local
+    ports:
+      - "3013:3013"
+    environment:
+      NODE_ENV: production
+      PORT: "3013"

@@ -1,0 +1,28 @@
+# Production compose -- joins the shared `pritika` Docker network on the VM.
+# Caddy reaches the container by name on the internal network; no host port
+# is published. PORT is read from /opt/pritika/_infra/portfolio.env which is
+# materialized by scripts/bootstrap-vm.sh.
+#
+# For local container-based dev, use docker-compose.local.yml.
+
+networks:
+  pritika:
+    external: true
+
+services:
+  app:
+    build: .
+    container_name: portfolio
+    restart: unless-stopped
+    networks: [pritika]
+    expose:
+      - "3013"
+    env_file:
+      - /opt/pritika/_infra/portfolio.env
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3013/health >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    mem_limit: 256m
