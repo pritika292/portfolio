@@ -4,15 +4,15 @@ Personal landing page for Pritika Priyadarshini at [pritika.studio](https://prit
 
 ## Live
 
-[**pritika.studio**](https://pritika.studio) — dark-by-default with a real light toggle, system-sans body, Geist display, animated mesh-gradient hero, live shipping pulse fetched from controlroom.
+[**pritika.studio**](https://pritika.studio): dark by default with a real light toggle, system-sans body, Geist display, animated mesh-gradient hero, live shipping pulse fetched from controlroom.
 
 ## What this is
 
-Single-page personal site. The editorial spine is the Experience section — five roles across **Paycom · VMware · Microsoft**, each with the resume's full bullet list, impact numbers, and inline tech chips. Two live demos (shortlive, controlroom) sit below as supporting evidence; the footer carries contact links and a résumé download.
+Single-page personal site. The editorial spine is the Experience accordion: three companies (Paycom, VMware, Microsoft), each collapsible with a one-line summary visible and the full bullet history one click away. Two live demos (shortlive, controlroom) sit below as supporting evidence, and the footer carries contact links and a résumé download.
 
 ## Why this exists
 
-Cold emails to SF founders route to this domain. The root of `pritika.studio` was a Caddy-hosted placeholder before v1; this is the real front door — five years of production engineering up front, two shipped subdomain demos one click away.
+Cold emails to SF founders route to this domain. The root of `pritika.studio` was a Caddy-hosted placeholder before v1; this is the real front door, with five years of production engineering up front and two shipped subdomain demos one click away.
 
 ## Architecture
 
@@ -31,9 +31,9 @@ flowchart LR
     end
 ```
 
-Everything runs on a single Azure VM (`pritika-portfolio-vm`, B2as_v2, northcentralus) inside the shared `pritika` docker network. Caddy is the only external surface — it terminates TLS via Let's Encrypt and routes by hostname. The portfolio container exposes `:3013` to the docker network only; no host-side port mapping.
+Everything runs on a single Azure VM (`pritika-portfolio-vm`, B2as_v2, northcentralus) inside the shared `pritika` docker network. Caddy is the only external surface; it terminates TLS via Let's Encrypt and routes by hostname. The portfolio container exposes `:3013` to the docker network only; no host-side port mapping.
 
-The Hero's velocity card fetches `controlroom.pritika.studio/api/pulse` on mount. If controlroom is unreachable, the card unmounts silently — the rest of the page renders unchanged.
+The Hero's velocity card fetches `controlroom.pritika.studio/api/pulse` on mount. If controlroom is unreachable, the card unmounts silently and the rest of the page renders unchanged.
 
 ## Data model
 
@@ -41,12 +41,12 @@ None. The site is a static React SPA built with Vite and served by Express. Cont
 
 ## Tech stack
 
-- **TypeScript strict mode** — `noUncheckedIndexedAccess`, `noImplicitOverride`, no `any` without comment
-- **React 19** with `createRoot` and `StrictMode`; no router (single-page scroll)
-- **Vite 5** builds the client bundle; `publicDir` points at `public/` at the repo root so resume / favicon / fonts land in `dist/client/`
-- **Express 5** serves the built SPA + a `/health` endpoint
-- **Helmet** for CSP + HSTS; `connect-src` allowlists `controlroom.pritika.studio` for the shipping-pulse fetch
-- **Tailwind 3** with theme tokens aliased to CSS variables — the toggle is a one-line attribute flip on `<html>`
+- **TypeScript strict mode** with `noUncheckedIndexedAccess`, `noImplicitOverride`, no `any` without a comment
+- **React 19** using `createRoot` and `StrictMode`; no router (single-page scroll)
+- **Vite 5** builds the client bundle; `publicDir` points at `public/` at the repo root so resume, favicon, and fonts land in `dist/client/`
+- **Express 5** serves the built SPA plus a `/health` endpoint
+- **Helmet** for CSP and HSTS; `connect-src` allowlists `controlroom.pritika.studio` for the shipping-pulse fetch
+- **Tailwind 3** with theme tokens aliased to CSS variables, so the toggle is a one-line attribute flip on `<html>`
 - **Geist Variable** for the hero display; system-sans for body text (zero web-font payload on first paint)
 - **Node 24** on `alpine`, multi-stage Dockerfile, 259 MB runtime image
 
@@ -90,7 +90,7 @@ az vm run-command invoke \
 
 The script (`deploy/vm-bootstrap.sh`) clones (or pulls) into `/opt/pritika/portfolio`, runs `scripts/bootstrap-vm.sh` to materialize `/opt/pritika/_infra/portfolio.env`, `docker compose up -d --build`, and probes `/health` with a 60 s retry loop. Idempotent.
 
-After the container is up, Caddy already routes `pritika.studio` to `portfolio:3013` on the internal network — no DNS or TLS changes needed.
+After the container is up, Caddy already routes `pritika.studio` to `portfolio:3013` on the internal network, with no DNS or TLS changes needed.
 
 ## Tests &amp; CI
 
@@ -107,20 +107,20 @@ The site is small enough that a manual eyeball pass covers the regression surfac
 
 ## Performance characteristics
 
-Not benchmarked yet. The site is a static SPA behind Caddy on a B2as_v2 VM — expect <100 ms TTFB on warm cache and well under 1 s LCP in any modern browser. The Geist Variable woff2 is the only web font (~70 KB); body type stays on the system stack so first paint never blocks on font load.
+Not benchmarked yet. The site is a static SPA behind Caddy on a B2as_v2 VM, so expect <100 ms TTFB on warm cache and well under 1 s LCP in any modern browser. The Geist Variable woff2 is the only web font (~70 KB); body type stays on the system stack so first paint never blocks on font load.
 
 ## Limitations &amp; honest scope
 
-- **No tests, no CI on v1** — see *What's next*; the next PR adds both
-- **No OG image yet** — Twitter/LinkedIn/Slack unfurls render as text-only previews until v1.2 ships the generator
-- **No blog** — there's nothing to write about that isn't already on the live site or in the demo repos
-- **No third-party analytics** — `pulseboard` (one of the planned demos) will eventually own click tracking; first-party only
+- **No tests, no CI on v1.** See *What's next*; the next PR adds both.
+- **No OG image yet.** Twitter, LinkedIn, and Slack unfurls render as text-only previews until v1.2 ships the generator.
+- **No blog.** Nothing to write about yet that isn't already on the live site or in the demo repos.
+- **No third-party analytics.** `pulseboard` (one of the planned demos) will eventually own click tracking; first-party only.
 
 ## What's next
 
 Each item below is a discrete PR landing before the one after it.
 
-1. **v1.1 — Tests + CI gate.** `vitest` + `supertest` for the server, `vitest` + `jsdom` for the client. Lift `ci.yml` and `deploy.yml` from controlroom; OIDC + `az vm run-command` replaces the manual deploy. Must land before any further changes.
-2. **v1.2 — Runtime OG image generator.** `@vercel/og` (satori + resvg) route at `/og/[slug].png`. Social previews stay current as copy evolves.
-3. **v1.3 — MDX blog.** Long-form writing surface for build-and-train explanations, retros, and notes from the demo repos.
-4. **v1.4 — Analytics.** First-party only, wired through `pulseboard` once it lands. Never a third-party tracker.
+1. **v1.1, tests and CI gate.** `vitest` + `supertest` for the server, `vitest` + `jsdom` for the client. Lift `ci.yml` and `deploy.yml` from controlroom; OIDC + `az vm run-command` replaces the manual deploy. Must land before any further changes.
+2. **v1.2, runtime OG image generator.** `@vercel/og` (satori + resvg) route at `/og/[slug].png`. Social previews stay current as copy evolves.
+3. **v1.3, MDX blog.** Long-form writing surface for build-and-train explanations, retros, and notes from the demo repos.
+4. **v1.4, analytics.** First-party only, wired through `pulseboard` once it lands. Never a third-party tracker.

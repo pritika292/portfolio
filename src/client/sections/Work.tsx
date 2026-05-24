@@ -3,7 +3,7 @@ import { ProjectCard } from "../components/ProjectCard.js";
 export function Work() {
   return (
     <section id="work" className="max-w-page mx-auto px-6 py-24 md:py-32 border-t border-border">
-      <h2 className="section-heading">What I ship</h2>
+      <h2 className="section-heading">What I built in my spare time</h2>
       <div className="mt-12 max-w-content space-y-6">
         <ProjectCard
           code="CR-01"
@@ -21,7 +21,7 @@ export function Work() {
         />
       </div>
       <p className="mt-12 max-w-content text-muted italic">
-        Multi-hat by default — I write the API, the migration, the SQL plan, the React, the
+        Multi-hat by default. I write the API, the migration, the SQL plan, the React, the
         Dockerfile, and the deploy.
       </p>
     </section>
