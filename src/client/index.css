@@ -227,6 +227,67 @@ a.inline-link:focus-visible::after {
 }
 
 /* ----------------------------------------------------------------------------
+   Two-column page layout. Above the footer the page splits into a main
+   column (Hero, Experience, Stack) and a sticky side pane (live shipping
+   pulse + spare-time builds). Below 1024px the grid collapses to a single
+   column with the side pane sitting right after Hero so projects stay
+   visible early in the scroll instead of buried at the bottom.
+   --------------------------------------------------------------------------*/
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "hero"
+    "side"
+    "main";
+  column-gap: 48px;
+  max-width: 1280px;
+}
+.page-grid__hero {
+  grid-area: hero;
+}
+.page-grid__side {
+  grid-area: side;
+  margin-top: 8px;
+}
+.page-grid__main {
+  grid-area: main;
+}
+
+@media (min-width: 1024px) {
+  .page-grid {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    grid-template-areas:
+      "hero side"
+      "main side";
+  }
+  .page-grid__side {
+    position: sticky;
+    top: 88px;
+    align-self: start;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    margin-top: 0;
+    padding-top: 32px;
+    /* slim scrollbar inside the pane only */
+    scrollbar-width: thin;
+  }
+  .page-grid__side::-webkit-scrollbar {
+    width: 6px;
+  }
+  .page-grid__side::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+}
+
+.side-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ----------------------------------------------------------------------------
    Experience accordion. Each company is a row with logo + name + most-recent
    title/dates/location + chevron in the head, a one-line summary always
    visible below, and an animated body that opens to show the full bullet

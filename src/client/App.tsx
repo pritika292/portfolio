@@ -2,19 +2,30 @@ import { Header } from "./sections/Header.js";
 import { Hero } from "./sections/Hero.js";
 import { Experience } from "./sections/Experience/index.js";
 import { Stack } from "./sections/Stack.js";
-import { Work } from "./sections/Work.js";
+import { SidePane } from "./sections/SidePane.js";
 import { Footer } from "./sections/Footer.js";
 
+// Two-column layout above the footer: main content on the left
+// (Hero -> Experience -> Stack), sticky side pane on the right (live
+// shipping pulse + project cards). On <1024px the grid collapses to a
+// single column and the side pane renders inline right after Hero so the
+// projects are still visible early in the scroll.
 export function App() {
   return (
     <>
       <Header />
-      <main>
-        <Hero />
-        <Experience />
-        <Stack />
-        <Work />
-      </main>
+      <div className="page-grid max-w-page mx-auto px-6">
+        <div className="page-grid__hero">
+          <Hero />
+        </div>
+        <div className="page-grid__side">
+          <SidePane />
+        </div>
+        <div className="page-grid__main">
+          <Experience />
+          <Stack />
+        </div>
+      </div>
       <Footer />
     </>
   );

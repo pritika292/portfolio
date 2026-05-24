@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 
 type Props = {
   id: string;
@@ -18,8 +18,12 @@ type Props = {
 // A one-line summary sits below, always visible. The expanded body uses the
 // modern grid-template-rows 0fr -> 1fr animation so heights stay intrinsic
 // and no JS measurement is needed.
+//
+// preventDefault on click stops Safari/Chrome's occasional auto-scroll
+// behavior when an aria-controls target grows. The aria-controls attribute
+// itself was dropped: the body sits as a sibling immediately after the
+// button so screen readers find it via DOM order anyway.
 export function CompanyRow({
-  id,
   name,
   logo,
   latestTitle,
@@ -30,14 +34,17 @@ export function CompanyRow({
   onToggle,
   children,
 }: Props) {
+  function handleClick(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    onToggle();
+  }
   return (
     <li className={`company-row ${isOpen ? "is-open" : ""}`}>
       <button
         type="button"
         className="company-row__head"
         aria-expanded={isOpen}
-        aria-controls={`${id}-body`}
-        onClick={onToggle}
+        onClick={handleClick}
       >
         <span className="company-row__logo" aria-hidden>
           {logo}
@@ -67,12 +74,7 @@ export function CompanyRow({
         </span>
       </button>
       <p className="company-row__summary">{summary}</p>
-      <div
-        id={`${id}-body`}
-        className="company-row__body"
-        role="region"
-        aria-label={`${name} details`}
-      >
+      <div className="company-row__body" aria-hidden={!isOpen}>
         <div className="company-row__body-inner">{children}</div>
       </div>
     </li>

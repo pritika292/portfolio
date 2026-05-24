@@ -41,9 +41,9 @@ const COLUMNS: Column[] = [
 
 export function Stack() {
   return (
-    <section id="stack" className="max-w-page mx-auto px-6 py-24 md:py-32 border-t border-border">
+    <section id="stack" className="py-16 md:py-24 border-t border-border">
       <h2 className="section-heading">Stack</h2>
-      <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-10">
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-8">
         {COLUMNS.map((col) => (
           <div key={col.heading}>
             <h3 className="font-mono text-[11px] tracking-[0.18em] uppercase text-muted">

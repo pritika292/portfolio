@@ -1,75 +1,26 @@
-import { useShippingPulse } from "../lib/shippingPulse.js";
-
 export function Hero() {
   return (
     <section className="relative">
       <div className="hero-mesh" aria-hidden />
-      <div className="max-w-page mx-auto px-6 pt-16 pb-24 md:pt-24 md:pb-32">
-        <div className="grid md:grid-cols-[1fr_auto] gap-12 items-end">
-          <div>
-            <h1 className="font-display font-semibold text-[clamp(56px,9vw,104px)] leading-[0.95] tracking-tight">
-              Pritika
-              <br />
-              Priyadarshini.
-            </h1>
-            <p className="mt-8 font-display text-2xl md:text-3xl leading-snug max-w-content">
-              I build production systems from zero to one. Fast.
-            </p>
-            <p className="mt-6 max-w-content leading-relaxed">
-              Fullstack and backend distributed systems engineer. Five years across{" "}
-              <strong className="text-text">Paycom, VMware, and Microsoft</strong>, shipping
-              real-time platforms that serve <strong className="text-text">100k+ users</strong> with
-              Kubernetes, Kafka, Redis, and MySQL. I move fast, wear every hat from API to SQL plan
-              to Dockerfile to deploy, and ramp up in days. Open to senior backend and distsys roles
-              at top startups in San Francisco.
-            </p>
-            <p className="mt-4 text-muted">Backend and distributed systems · San Francisco</p>
-          </div>
-          <VelocityCard />
-        </div>
-        <a
-          href="#experience"
-          className="mt-16 inline-flex items-center gap-2 font-mono text-[12px] tracking-[0.18em] uppercase text-muted hover:text-accent transition-colors"
-        >
-          <span>experience</span>
-          <span aria-hidden>↓</span>
-        </a>
+      <div className="relative pt-12 pb-16 md:pt-16 md:pb-20">
+        <h1 className="font-display font-semibold text-[clamp(48px,8vw,88px)] leading-[0.95] tracking-tight">
+          Pritika
+          <br />
+          Priyadarshini.
+        </h1>
+        <p className="mt-6 font-display text-2xl md:text-3xl leading-snug max-w-content">
+          I build production systems from zero to one. Fast.
+        </p>
+        <p className="mt-6 max-w-content leading-relaxed">
+          Fullstack and backend distributed systems engineer. Five years across{" "}
+          <strong className="text-text">Paycom, VMware, and Microsoft</strong>, shipping real-time
+          platforms that serve <strong className="text-text">100k+ users</strong> with Kubernetes,
+          Kafka, Redis, and MySQL. I move fast, wear every hat from API to SQL plan to Dockerfile to
+          deploy, and ramp up in days. Open to senior backend and distsys roles at top startups in
+          San Francisco.
+        </p>
+        <p className="mt-4 text-muted">Backend and distributed systems · San Francisco</p>
       </div>
     </section>
-  );
-}
-
-function VelocityCard() {
-  const pulse = useShippingPulse();
-  if (!pulse) return null;
-  const { commitsThisWeek, lastDeploy, liveCount } = pulse;
-  return (
-    <aside
-      className="border border-border bg-card px-6 py-5 min-w-[240px]"
-      aria-label="Live shipping activity"
-    >
-      <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.18em] uppercase text-muted">
-        <span className="pulse-dot text-accent" aria-hidden>
-          ●
-        </span>
-        <span>live shipping</span>
-      </div>
-      <ul className="mt-4 space-y-2 font-mono text-[13px]">
-        <li>
-          <span className="text-text">{commitsThisWeek}</span>{" "}
-          <span className="text-muted">commits this week</span>
-        </li>
-        {lastDeploy && (
-          <li className="text-muted">
-            last deploy · <span className="text-text">{lastDeploy.project}</span> ·{" "}
-            <span className="text-text">{lastDeploy.hoursAgo}h ago</span>
-          </li>
-        )}
-        <li>
-          <span className="text-text">{liveCount}</span>{" "}
-          <span className="text-muted">projects live</span>
-        </li>
-      </ul>
-    </aside>
   );
 }
