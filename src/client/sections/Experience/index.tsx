@@ -8,43 +8,79 @@ import { formatDuration, monthsBetween, nowYM, type DateYM } from "../../lib/dur
 
 type CompanyId = "paycom" | "vmware" | "microsoft";
 
+interface Range {
+  start: DateYM;
+  // Undefined for an ongoing role; resolves to the current month.
+  end?: DateYM;
+}
+
 interface CompanySpec {
   id: CompanyId;
-  start: DateYM;
-  // Leave end undefined for "Present" — the duration updates as time passes.
-  end?: DateYM;
+  fte?: Range;
+  intern?: Range;
 }
 
 // Source of truth for role durations. The visible date strings stay
 // hardcoded in JSX below so the layout doesn't depend on this; this list
-// only powers the (Xy Ym) duration chip and the total at the heading.
+// only powers the (Xy Ym) duration chip on each company row and the FTE
+// + intern totals next to the heading.
+//
+// Where FTE and intern at the same company are back-to-back (e.g. VMware
+// intern ended Jul 2020 and FTE began Jul 2020), the intern range is
+// closed at the previous month to avoid double-counting the transition.
 const COMPANIES: CompanySpec[] = [
-  { id: "paycom", start: { year: 2024, month: 6 } },
-  { id: "vmware", start: { year: 2020, month: 7 }, end: { year: 2022, month: 7 } },
-  { id: "microsoft", start: { year: 2019, month: 5 }, end: { year: 2019, month: 7 } },
+  {
+    id: "paycom",
+    fte: { start: { year: 2024, month: 6 } },
+    intern: { start: { year: 2023, month: 5 }, end: { year: 2023, month: 7 } },
+  },
+  {
+    id: "vmware",
+    fte: { start: { year: 2020, month: 7 }, end: { year: 2022, month: 7 } },
+    intern: { start: { year: 2020, month: 1 }, end: { year: 2020, month: 6 } },
+  },
+  {
+    id: "microsoft",
+    intern: { start: { year: 2019, month: 5 }, end: { year: 2019, month: 7 } },
+  },
 ];
+
+function rangeMonths(r: Range, now: DateYM): number {
+  return monthsBetween(r.start, r.end ?? now);
+}
 
 export function Experience() {
   const [openId, setOpenId] = useState<CompanyId | null>(null);
   const toggle = (id: CompanyId) => setOpenId((cur) => (cur === id ? null : id));
 
-  const { durations, total } = useMemo(() => {
+  const { durations, fteTotal, internTotal } = useMemo(() => {
     const now = nowYM();
     const d: Record<CompanyId, string> = { paycom: "", vmware: "", microsoft: "" };
-    let totalMonths = 0;
+    let fteMonths = 0;
+    let internMonths = 0;
     for (const c of COMPANIES) {
-      const months = monthsBetween(c.start, c.end ?? now);
-      d[c.id] = formatDuration(months);
-      totalMonths += months;
+      // Per-row chip shows FTE if there was one; otherwise the intern
+      // duration (so the Microsoft intern still shows its 3m).
+      if (c.fte) d[c.id] = formatDuration(rangeMonths(c.fte, now));
+      else if (c.intern) d[c.id] = formatDuration(rangeMonths(c.intern, now));
+      if (c.fte) fteMonths += rangeMonths(c.fte, now);
+      if (c.intern) internMonths += rangeMonths(c.intern, now);
     }
-    return { durations: d, total: formatDuration(totalMonths) };
+    return {
+      durations: d,
+      fteTotal: formatDuration(fteMonths),
+      internTotal: formatDuration(internMonths),
+    };
   }, []);
 
   return (
     <section id="experience" className="pt-8 pb-12 md:pt-10 md:pb-16">
       <h2 className="section-heading">
         Experience
-        <span className="section-heading__meta font-mono"> · {total} total</span>
+        <span className="section-heading__meta font-mono">
+          {" "}
+          · {fteTotal} FTE · {internTotal} intern
+        </span>
       </h2>
       <ul className="mt-10 border-t border-border list-none p-0">
         <CompanyRow
