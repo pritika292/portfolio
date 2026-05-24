@@ -36,7 +36,10 @@ export default {
       },
       maxWidth: {
         content: "720px",
-        page: "1080px",
+        // Matches .page-grid's max-width in index.css so the header /
+        // footer wordmarks line up exactly with the left/right edges of
+        // the body content on wide viewports (#54).
+        page: "1280px",
       },
     },
   },
