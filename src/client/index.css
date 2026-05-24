@@ -408,6 +408,50 @@ a.inline-link:focus-visible::after {
   }
 }
 
+/* ----------------------------------------------------------------------------
+   Footer icon-link: small SVG glyph + label. Hover state matches the
+   inline-link pattern (color flips to accent, underline animates in under
+   the label only -- the icon stays put).
+   --------------------------------------------------------------------------*/
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.footer-link__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-link__label {
+  position: relative;
+  font-size: 15px;
+  font-weight: 500;
+}
+.footer-link__label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 150ms ease;
+}
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: var(--accent);
+}
+.footer-link:hover .footer-link__label::after,
+.footer-link:focus-visible .footer-link__label::after {
+  transform: scaleX(1);
+}
+
 /* sub-role nested inside an open company row */
 .sub-role {
   margin-top: 24px;

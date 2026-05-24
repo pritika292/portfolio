@@ -1,6 +1,7 @@
 import { Header } from "./sections/Header.js";
 import { Hero } from "./sections/Hero.js";
 import { Experience } from "./sections/Experience/index.js";
+import { Education } from "./sections/Education/index.js";
 import { Stack } from "./sections/Stack.js";
 import { SidePane } from "./sections/SidePane.js";
 import { Footer } from "./sections/Footer.js";
@@ -23,6 +24,7 @@ export function App() {
         </div>
         <div className="page-grid__main">
           <Experience />
+          <Education />
           <Stack />
         </div>
       </div>

@@ -12,7 +12,7 @@ export function Experience() {
   const toggle = (id: CompanyId) => setOpenId((cur) => (cur === id ? null : id));
 
   return (
-    <section id="experience" className="py-16 md:py-24">
+    <section id="experience" className="pt-8 pb-12 md:pt-10 md:pb-16">
       <h2 className="section-heading">Experience</h2>
       <ul className="mt-10 border-t border-border list-none p-0">
         <CompanyRow
@@ -55,10 +55,6 @@ export function Experience() {
           <MicrosoftContent />
         </CompanyRow>
       </ul>
-      <p className="mt-12 text-[14px] text-muted italic leading-relaxed">
-        University of Texas at Dallas, MS Computer Science, 3.88 GPA (2022 to 2024). Manipal
-        Institute of Technology, BTech Computer Science, 9.02 / 10 (2016 to 2020).
-      </p>
     </section>
   );
 }

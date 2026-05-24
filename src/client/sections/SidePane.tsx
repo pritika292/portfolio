@@ -16,14 +16,14 @@ export function SidePane() {
           <ProjectCard
             code="CR-01"
             name="shortlive"
-            tagline="Shorten a URL, then watch each click flash on a live world map. Sub-second, no refresh."
-            tech={["TS", "Express", "Postgres", "Redis", "WebSocket"]}
+            tagline="Shorten a URL, watch each click flash on a live world map. Sub-second, no refresh. Outbound webhooks fire to your endpoint on every click, HMAC signed, with exponential backoff and a dead-letter queue."
+            tech={["TS", "Express", "Postgres", "Redis", "WebSocket", "Webhooks"]}
             href="https://shortlive.pritika.studio"
           />
           <ProjectCard
             code="CR-12"
             name="controlroom"
-            tagline="The live status board running this whole site. Deploys, health, commits, all streamed via SSE."
+            tagline="The live status board running the whole portfolio family: this site, shortlive, and every project that ships next. Deploys, health, commits, and incidents streamed via SSE."
             tech={["TS", "Express", "SSE", "Postgres"]}
             href="https://controlroom.pritika.studio"
           />
