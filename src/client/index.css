@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens land in Epic 2 (issue #13). Minimal bootstrap so the scaffold
+   renders something readable until then. */
+:root {
+  color-scheme: dark light;
+}
+[data-theme="dark"] body {
+  background: #0a0a0a;
+  color: #fafafa;
+}
+[data-theme="light"] body {
+  background: #fafaf7;
+  color: #0a0a0a;
+}
+body {
+  font-family: ui-sans-serif, -apple-system, "SF Pro Text", "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

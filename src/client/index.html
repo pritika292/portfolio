@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pritika Priyadarshini — backend and distributed systems engineer</title>
+    <meta
+      name="description"
+      content="Backend and distributed systems engineer in San Francisco. Five years across Paycom, VMware, Microsoft. Currently shipping at pritika.studio."
+    />
+    <link rel="canonical" href="https://pritika.studio" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pritika.studio" />
+    <meta
+      property="og:title"
+      content="Pritika Priyadarshini — backend and distributed systems engineer"
+    />
+    <meta
+      property="og:description"
+      content="Five years across Paycom, VMware, Microsoft. Real-time systems at 100k+ user scale."
+    />
+    <meta property="og:image" content="https://pritika.studio/og-image.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Pritika Priyadarshini — backend and distributed systems engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Five years across Paycom, VMware, Microsoft. Real-time systems at 100k+ user scale."
+    />
+    <meta name="twitter:image" content="https://pritika.studio/og-image.png" />
+
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0a" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf7" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/Geist-Variable.woff2"
+      crossorigin
+    />
+
+    <script>
+      // Apply the saved theme before React mounts so the first paint is correct
+      // (no FOUC). Default is dark (matches index.html's hardcoded data-theme);
+      // honor the user's last choice if set, otherwise honor prefers-color-scheme.
+      (function () {
+        try {
+          var stored = localStorage.getItem("portfolio:theme");
+          var theme;
+          if (stored === "light" || stored === "dark") {
+            theme = stored;
+          } else {
+            theme = window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+          }
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>
