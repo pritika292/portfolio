@@ -14,9 +14,12 @@ export function Hero() {
         <p className="mt-6 max-w-content leading-relaxed">
           Fullstack and backend distributed systems engineer. Four years across{" "}
           <strong className="text-text">Paycom, VMware, and Microsoft</strong>, shipping real-time
-          platforms that serve <strong className="text-text">100k+ users</strong> with Kubernetes,
-          Kafka, Redis, and MySQL. I move fast, wear every hat from API to SQL plan to Dockerfile to
-          deploy, and ramp up in days. Open to senior backend and distsys roles at top startups.
+          platforms that serve <strong className="text-text">100k+ users</strong> with React,
+          Node.js, TypeScript, Kubernetes, Kafka, Redis, and MySQL.{" "}
+          <strong className="text-text">End-to-end builder who wants high ownership</strong>: the
+          API, the SQL plan, the React, the Dockerfile, and the deploy all from one person. Move
+          fast, ramp in days, ship the same week. Open to senior backend and distsys roles at top
+          startups.
         </p>
         <p className="mt-4 text-muted font-mono text-[13px] tracking-wide">
           Full-stack · Backend · Distributed Systems · AI · San Francisco · Seattle · Austin
