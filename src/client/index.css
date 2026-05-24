@@ -28,9 +28,11 @@
   --text: #fafafa;
   --muted: #a1a1aa;
   --accent: #ff6a13;
-  --accent-glow: rgba(255, 106, 19, 0.1);
+  --accent-glow: rgba(255, 106, 19, 0.14);
+  --cool-glow: rgba(56, 189, 248, 0.08);
   --border: #1f1f1f;
   --card-bg: #0f0f0f;
+  --card-glass: rgba(15, 15, 15, 0.55);
 }
 
 [data-theme="light"] {
@@ -38,9 +40,11 @@
   --text: #0a0a0a;
   --muted: #71717a;
   --accent: #ff6a13;
-  --accent-glow: rgba(255, 106, 19, 0.06);
+  --accent-glow: rgba(255, 106, 19, 0.08);
+  --cool-glow: rgba(56, 189, 248, 0.05);
   --border: #e5e5e0;
   --card-bg: #ffffff;
+  --card-glass: rgba(255, 255, 255, 0.65);
 }
 
 html {
@@ -73,16 +77,20 @@ body {
    --------------------------------------------------------------------------*/
 .hero-mesh {
   position: absolute;
-  inset: 0;
+  inset: -10% -10% -20% -10%;
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 18% 28%, var(--accent-glow) 0%, transparent 55%),
-    radial-gradient(circle at 82% 72%, var(--accent-glow) 0%, transparent 55%);
+    radial-gradient(ellipse 60% 50% at 12% 22%, var(--accent-glow) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 88% 68%, var(--accent-glow) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 65% 18%, var(--cool-glow) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 25% 85%, var(--cool-glow) 0%, transparent 60%);
   background-size:
-    200% 200%,
-    200% 200%;
-  animation: mesh-drift 24s ease-in-out infinite;
+    220% 220%,
+    220% 220%,
+    220% 220%,
+    220% 220%;
+  animation: mesh-drift 32s ease-in-out infinite;
 }
 
 @keyframes mesh-drift {
@@ -90,12 +98,16 @@ body {
   100% {
     background-position:
       0% 0%,
-      100% 100%;
+      100% 100%,
+      30% 0%,
+      0% 100%;
   }
   50% {
     background-position:
-      20% 15%,
-      80% 85%;
+      25% 20%,
+      75% 80%,
+      55% 25%,
+      20% 75%;
   }
 }
 
@@ -241,7 +253,6 @@ a.inline-link:focus-visible::after {
   display: block;
   padding: 14px 16px;
   border: 1px solid rgba(255, 106, 19, 0.18);
-  background: var(--card-bg);
   color: var(--text);
   text-decoration: none;
   animation: project-card-breathe 3s ease-in-out infinite;
@@ -355,6 +366,65 @@ a.inline-link:focus-visible::after {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* ----------------------------------------------------------------------------
+   Glass treatment: translucent surface + backdrop-blur. Lets the hero mesh
+   gradient bleed through subtly while keeping text readable. Used by the
+   velocity card and ProjectCard. Hover-lift on the whole card.
+   --------------------------------------------------------------------------*/
+.fr-glass {
+  background: var(--card-glass);
+  backdrop-filter: blur(10px) saturate(115%);
+  -webkit-backdrop-filter: blur(10px) saturate(115%);
+}
+.fr-lift {
+  will-change: transform;
+}
+.fr-lift:hover,
+.fr-lift:focus-visible {
+  transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .fr-lift:hover,
+  .fr-lift:focus-visible {
+    transform: none;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Stagger-in: sections fade-up on first paint. Cheap GPU transform; honors
+   reduced-motion.
+   --------------------------------------------------------------------------*/
+@keyframes fr-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fr-fade-up {
+  animation: fr-fade-up 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.fr-fade-up.fr-delay-1 {
+  animation-delay: 80ms;
+}
+.fr-fade-up.fr-delay-2 {
+  animation-delay: 160ms;
+}
+.fr-fade-up.fr-delay-3 {
+  animation-delay: 240ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fr-fade-up,
+  .fr-fade-up.fr-delay-1,
+  .fr-fade-up.fr-delay-2,
+  .fr-fade-up.fr-delay-3 {
+    animation: none;
+  }
 }
 
 /* ----------------------------------------------------------------------------
