@@ -29,7 +29,6 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.0.1",
-    "geist": "^1.7.1",
     "helmet": "^8.2.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
