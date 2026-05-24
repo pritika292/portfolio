@@ -227,6 +227,73 @@ a.inline-link:focus-visible::after {
 }
 
 /* ----------------------------------------------------------------------------
+   Experience role card. Header has a 4px accent stripe on the left of the
+   company display name; location is right-aligned muted; title+dates sit
+   on a second row in mono.
+   --------------------------------------------------------------------------*/
+.role-card__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 12px 24px;
+  margin-bottom: 18px;
+}
+.role-card__heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  grid-column: 1;
+}
+.role-card__stripe {
+  display: inline-block;
+  width: 3px;
+  height: 22px;
+  background: var(--accent);
+}
+.role-card__company {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.role-card__location {
+  grid-column: 2;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+}
+.role-card__meta {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  color: var(--muted);
+}
+.role-card__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.role-card__bullet {
+  position: relative;
+  padding-left: 18px;
+}
+.role-card__bullet::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 8px;
+  height: 1px;
+  background: var(--muted);
+}
+.role-card__bullet strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------------
    Section header decoration: 4px tall accent stripe on the left of the
    small caps label.
    --------------------------------------------------------------------------*/
