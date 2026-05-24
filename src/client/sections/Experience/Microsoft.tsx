@@ -1,14 +1,9 @@
-import { RoleCard, Bullet } from "../../components/RoleCard.js";
+import { SubRole, Bullet } from "../../components/CompanyRow.js";
 import { Chip, ChipRow } from "../../components/Chip.js";
 
-export function MicrosoftIntern() {
+export function MicrosoftContent() {
   return (
-    <RoleCard
-      company="Microsoft"
-      location="Hyderabad, India"
-      title="Software Engineer Intern"
-      dates="May — Jul 2019"
-    >
+    <SubRole title="Software Engineer Intern" dates="May - Jul 2019" location="Hyderabad, India">
       <Bullet>
         Built a pipeline flow persisting test results from Docker-running applications to{" "}
         <strong>Azure DevOps</strong> via ReactJS.
@@ -27,6 +22,6 @@ export function MicrosoftIntern() {
           <Chip>Azure DevOps</Chip>
         </ChipRow>
       </Bullet>
-    </RoleCard>
+    </SubRole>
   );
 }

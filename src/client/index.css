@@ -227,68 +227,161 @@ a.inline-link:focus-visible::after {
 }
 
 /* ----------------------------------------------------------------------------
-   Experience role card. Header has a 4px accent stripe on the left of the
-   company display name; location is right-aligned muted; title+dates sit
-   on a second row in mono.
+   Experience accordion. Each company is a row with logo + name + most-recent
+   title/dates/location + chevron in the head, a one-line summary always
+   visible below, and an animated body that opens to show the full bullet
+   list. Single-open at a time; the open one rolls up when another opens.
+
+   Animation uses grid-template-rows 0fr -> 1fr so the height stays intrinsic
+   without JS measurement. Falls back to instant under prefers-reduced-motion.
    --------------------------------------------------------------------------*/
-.role-card__header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
-  gap: 12px 24px;
-  margin-bottom: 18px;
+.company-row {
+  list-style: none;
+  border-bottom: 1px solid var(--border);
+  padding: 0;
 }
-.role-card__heading {
+.company-row__head {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 20px 0;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+}
+.company-row__head:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.company-row__logo {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  grid-column: 1;
+  justify-content: center;
 }
-.role-card__stripe {
-  display: inline-block;
-  width: 3px;
-  height: 22px;
-  background: var(--accent);
-}
-.role-card__company {
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+.company-row__name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   line-height: 1;
 }
-.role-card__location {
-  grid-column: 2;
-  font-size: 13px;
+.company-row__meta {
+  font-size: 12.5px;
   color: var(--muted);
-  text-align: right;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
 }
-.role-card__meta {
-  grid-column: 1 / -1;
-  font-size: 13px;
+.company-row__title {
+  color: var(--text);
+}
+.company-row__sep {
+  opacity: 0.6;
+}
+.company-row__arrow {
+  display: inline-flex;
   color: var(--muted);
+  transition: transform 250ms ease-in-out;
 }
-.role-card__bullets {
+.company-row.is-open .company-row__arrow {
+  transform: rotate(180deg);
+}
+.company-row__summary {
+  margin: 0 0 14px 36px;
+  font-size: 14.5px;
+  color: var(--muted);
+  max-width: 60ch;
+  line-height: 1.55;
+}
+.company-row__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 280ms ease-in-out;
+}
+.company-row.is-open .company-row__body {
+  grid-template-rows: 1fr;
+}
+.company-row__body-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.company-row.is-open .company-row__body-inner {
+  padding: 8px 0 28px 36px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .company-row__body,
+  .company-row__arrow {
+    transition: none;
+  }
+}
+@media (max-width: 640px) {
+  .company-row__head {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "logo name arrow"
+      "logo meta arrow";
+    row-gap: 4px;
+  }
+  .company-row__logo {
+    grid-area: logo;
+  }
+  .company-row__name {
+    grid-area: name;
+  }
+  .company-row__meta {
+    grid-area: meta;
+    font-size: 12px;
+  }
+  .company-row__arrow {
+    grid-area: arrow;
+  }
+  .company-row__summary {
+    margin-left: 0;
+  }
+  .company-row.is-open .company-row__body-inner {
+    padding-left: 0;
+  }
+}
+
+/* sub-role nested inside an open company row */
+.sub-role {
+  margin-top: 24px;
+}
+.sub-role:first-of-type {
+  margin-top: 0;
+}
+.sub-role__header {
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+.sub-role__bullets {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
-.role-card__bullet {
+.sub-role__bullet {
   position: relative;
   padding-left: 18px;
+  font-size: 16px;
+  line-height: 1.55;
 }
-.role-card__bullet::before {
+.sub-role__bullet::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.8em;
+  top: 0.75em;
   width: 8px;
   height: 1px;
   background: var(--muted);
 }
-.role-card__bullet strong {
+.sub-role__bullet strong {
   color: var(--text);
   font-weight: 600;
 }
