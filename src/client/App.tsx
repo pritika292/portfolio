@@ -5,6 +5,7 @@ import { Education } from "./sections/Education/index.js";
 import { Stack } from "./sections/Stack.js";
 import { SidePane } from "./sections/SidePane.js";
 import { Footer } from "./sections/Footer.js";
+import { useVisitBeacon } from "./lib/visitBeacon.js";
 
 // Two-column layout above the footer: main content on the left
 // (Hero -> Experience -> Stack), sticky side pane on the right (live
@@ -12,6 +13,7 @@ import { Footer } from "./sections/Footer.js";
 // single column and the side pane renders inline right after Hero so the
 // projects are still visible early in the scroll.
 export function App() {
+  useVisitBeacon();
   return (
     <>
       <Header />
