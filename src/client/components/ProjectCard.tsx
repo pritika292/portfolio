@@ -15,7 +15,7 @@ type ProjectCardProps = {
 export function ProjectCard({ code, name, tagline, tech, href }: ProjectCardProps) {
   return (
     <a
-      className="project-card"
+      className="project-card fr-glass fr-lift"
       href={href}
       target="_blank"
       rel="noopener noreferrer"

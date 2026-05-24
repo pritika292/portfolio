@@ -19,13 +19,13 @@ export function App() {
     <>
       <Header />
       <div className="page-grid max-w-page mx-auto px-6">
-        <div className="page-grid__hero">
+        <div className="page-grid__hero fr-fade-up">
           <Hero />
         </div>
-        <div className="page-grid__side">
+        <div className="page-grid__side fr-fade-up fr-delay-2">
           <SidePane />
         </div>
-        <div className="page-grid__main">
+        <div className="page-grid__main fr-fade-up fr-delay-1">
           <Contact />
           <Experience />
           <Education />

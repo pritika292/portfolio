@@ -55,7 +55,7 @@ function VelocityCard() {
   if (!pulse) return null;
   const { commitsThisWeek, lastDeploy, liveCount } = pulse;
   return (
-    <div className="border border-border bg-card px-5 py-4" aria-label="Live shipping activity">
+    <div className="fr-glass border border-border px-5 py-4" aria-label="Live shipping activity">
       <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.18em] uppercase text-muted">
         <span className="pulse-dot text-accent" aria-hidden>
           ●
