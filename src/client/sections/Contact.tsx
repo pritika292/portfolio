@@ -6,7 +6,7 @@
 const EMAIL = "pritikaapriyadarshini@gmail.com";
 const GITHUB = "https://github.com/pritika292";
 const LINKEDIN = "https://linkedin.com/in/pritika-priyadarshini";
-const RESUME = "/resume.pdf";
+const RESUME = "/pritika_resume.pdf";
 
 export function Contact() {
   return (
@@ -26,12 +26,7 @@ export function Contact() {
             {EMAIL}
           </span>
         </a>
-        <a
-          href={RESUME}
-          className="contact-pill"
-          download
-          aria-label="Download resume PDF"
-        >
+        <a href={RESUME} className="contact-pill" download aria-label="Download resume PDF">
           <DocIcon />
           <span className="font-mono text-[14px] tracking-tight">Resume (PDF)</span>
         </a>
