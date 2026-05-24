@@ -12,7 +12,7 @@ Single-page personal site. The editorial spine is the Experience accordion: thre
 
 ## Why this exists
 
-Cold emails to SF founders route to this domain. The root of `pritika.studio` was a Caddy-hosted placeholder before v1; this is the real front door, with five years of production engineering up front and two shipped subdomain demos one click away.
+The root of `pritika.studio` was a Caddy-hosted placeholder before v1; this is the real front door, with five years of production engineering up front and two shipped subdomain demos one click away.
 
 ## Architecture
 
