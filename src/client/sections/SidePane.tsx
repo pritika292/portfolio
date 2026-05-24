@@ -12,24 +12,24 @@ export function SidePane() {
       <VelocityCard />
       <div>
         <h2 className="section-heading">Spare-time builds</h2>
-        <div className="mt-6 space-y-4">
+        <div className="mt-4 space-y-3">
           <ProjectCard
             code="CR-01"
             name="shortlive"
-            tagline="Shorten a URL, watch each click flash on a live world map. Sub-second, no refresh. Outbound webhooks fire to your endpoint on every click, HMAC signed, with exponential backoff and a dead-letter queue."
+            tagline="Shorten a URL, watch clicks flash on a live world map. Sub-second. Outbound webhooks fire to your endpoint, HMAC signed, with backoff and a DLQ."
             tech={["TS", "Express", "Postgres", "Redis", "WebSocket", "Webhooks"]}
             href="https://shortlive.pritika.studio"
           />
           <ProjectCard
             code="CR-12"
             name="controlroom"
-            tagline="The live status board running the whole portfolio family: this site, shortlive, and every project that ships next. Deploys, health, commits, and incidents streamed via SSE."
+            tagline="Live status board running the whole portfolio family: this site, shortlive, and every project after. Deploys, health, commits, incidents streamed via SSE."
             tech={["TS", "Express", "SSE", "Postgres"]}
             href="https://controlroom.pritika.studio"
           />
         </div>
-        <p className="mt-6 text-[13px] text-muted italic leading-relaxed">
-          Built nights and weekends. Day-job production work is the Experience section to the left.
+        <p className="mt-4 text-[11.5px] text-muted italic leading-snug">
+          Built nights and weekends. Day-job production work is in Experience.
         </p>
       </div>
     </aside>
