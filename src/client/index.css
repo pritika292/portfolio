@@ -191,6 +191,49 @@ a.inline-link:focus-visible::after {
 }
 
 /* ----------------------------------------------------------------------------
+   Contact cluster: pill row under the "Get in touch" section. The first
+   (email) pill is the primary CTA; the rest are equally-weighted neutral
+   pills. Wraps at narrow widths; never goes edge-to-edge ugly.
+   --------------------------------------------------------------------------*/
+.contact-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease,
+    background 150ms ease,
+    transform 150ms ease;
+}
+.contact-pill:hover,
+.contact-pill:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+  outline: 0;
+}
+.contact-pill--primary {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  color: var(--text);
+}
+.contact-pill--primary:hover,
+.contact-pill--primary:focus-visible {
+  background: rgba(255, 106, 19, 0.18);
+  color: var(--accent);
+}
+
+/* ----------------------------------------------------------------------------
    Project-card hover: name + arrow translate; border shifts to accent.
    GPU transforms only; no layout shift.
    --------------------------------------------------------------------------*/
