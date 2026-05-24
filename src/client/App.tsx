@@ -1,5 +1,6 @@
 import { Header } from "./sections/Header.js";
 import { Hero } from "./sections/Hero.js";
+import { Contact } from "./sections/Contact.js";
 import { Experience } from "./sections/Experience/index.js";
 import { Education } from "./sections/Education/index.js";
 import { Stack } from "./sections/Stack.js";
@@ -25,6 +26,7 @@ export function App() {
           <SidePane />
         </div>
         <div className="page-grid__main">
+          <Contact />
           <Experience />
           <Education />
           <Stack />
