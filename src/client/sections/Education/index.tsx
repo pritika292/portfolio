@@ -19,7 +19,7 @@ export function Education() {
       <ul className="mt-10 border-t border-border list-none p-0">
         <CompanyRow
           id="utd"
-          name="UT DALLAS"
+          name="UNIVERSITY OF TEXAS AT DALLAS"
           logo={<UtdLogo />}
           latestTitle="MS Computer Science"
           dates="2022 - 2024"
@@ -32,7 +32,7 @@ export function Education() {
         </CompanyRow>
         <CompanyRow
           id="manipal"
-          name="MANIPAL"
+          name="MANIPAL INSTITUTE OF TECHNOLOGY"
           logo={<ManipalLogo />}
           latestTitle="BTech Computer Science"
           dates="2016 - 2020"

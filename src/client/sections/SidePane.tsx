@@ -15,31 +15,31 @@ export function SidePane() {
         <div className="mt-4 space-y-3">
           <ProjectCard
             code="CR-01"
-            name="shortlive"
-            tagline="Shorten a URL, watch clicks flash on a live world map. Sub-second. Outbound webhooks fire to your endpoint, HMAC signed, with backoff and a DLQ."
-            tech={["TS", "Express", "Postgres", "Redis", "WebSocket", "Webhooks"]}
-            href="https://shortlive.pritika.studio"
-          />
-          <ProjectCard
-            code="CR-12"
-            name="pg-inspector"
-            tagline="Postgres sandbox: pick one of five industry schemas, ask in English or write SQL, see the execution plan, get AI-drafted index recommendations. Three-layer SQL safety; Azure OpenAI via Managed Identity, no keys."
-            tech={["TS", "Express", "React", "Postgres", "react-flow", "Azure OpenAI"]}
-            href="https://pg.pritika.studio"
-          />
-          <ProjectCard
-            code="CR-13"
             name="focusroom"
             tagline="Drop a post, watch 20 personas react. Audience simulation with diverse demographics, voice models, and threaded replies streamed via SSE."
             tech={["TS", "Express", "React", "Postgres", "SSE", "Azure OpenAI"]}
             href="https://focusroom.pritika.studio"
           />
           <ProjectCard
-            code="CR-14"
+            code="CR-02"
             name="controlroom"
             tagline="Live status board running the whole portfolio family: this site, shortlive, and every project after. Deploys, health, commits, incidents streamed via SSE."
             tech={["TS", "Express", "SSE", "Postgres"]}
             href="https://controlroom.pritika.studio"
+          />
+          <ProjectCard
+            code="CR-03"
+            name="pg-inspector"
+            tagline="Postgres sandbox: pick one of five industry schemas, ask in English or write SQL, see the execution plan, get AI-drafted index recommendations. Three-layer SQL safety; Azure OpenAI via Managed Identity, no keys."
+            tech={["TS", "Express", "React", "Postgres", "react-flow", "Azure OpenAI"]}
+            href="https://pg.pritika.studio"
+          />
+          <ProjectCard
+            code="CR-04"
+            name="shortlive"
+            tagline="Shorten a URL, watch clicks flash on a live world map. Sub-second. Outbound webhooks fire to your endpoint, HMAC signed, with backoff and a DLQ."
+            tech={["TS", "Express", "Postgres", "Redis", "WebSocket", "Webhooks"]}
+            href="https://shortlive.pritika.studio"
           />
         </div>
         <p className="mt-4 text-[11.5px] text-muted italic leading-snug">
