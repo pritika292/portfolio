@@ -6,6 +6,8 @@ type Props = {
   logo: ReactNode;
   latestTitle: string;
   dates: string;
+  // Human-formatted duration ("2y 6m") rendered next to dates.
+  duration?: string;
   location: string;
   summary: string;
   isOpen: boolean;
@@ -28,6 +30,7 @@ export function CompanyRow({
   logo,
   latestTitle,
   dates,
+  duration,
   location,
   summary,
   isOpen,
@@ -55,7 +58,10 @@ export function CompanyRow({
           <span aria-hidden className="company-row__sep">
             ·
           </span>
-          <span>{dates}</span>
+          <span>
+            {dates}
+            {duration !== undefined && <span className="company-row__duration"> ({duration})</span>}
+          </span>
           <span aria-hidden className="company-row__sep">
             ·
           </span>
@@ -84,11 +90,13 @@ export function CompanyRow({
 export function SubRole({
   title,
   dates,
+  duration,
   location,
   children,
 }: {
   title: string;
   dates: string;
+  duration?: string;
   location: string;
   children: ReactNode;
 }) {
@@ -98,7 +106,8 @@ export function SubRole({
         <span className="text-text">{title}</span>
         <span className="text-muted">
           {" "}
-          · {dates} · {location}
+          · {dates}
+          {duration !== undefined ? ` (${duration})` : ""} · {location}
         </span>
       </header>
       <ul className="sub-role__bullets">{children}</ul>
