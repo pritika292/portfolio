@@ -18,9 +18,7 @@ export function Header() {
           aria-label="Pritika Studio home"
         >
           <LogoMark size={26} />
-          <span className="font-mono text-[12px] tracking-[0.18em] uppercase">
-            PRITIKA.STUDIO
-          </span>
+          <span className="font-mono text-[12px] tracking-[0.18em] uppercase">PRITIKA.STUDIO</span>
         </a>
         <nav className="flex items-center gap-3 sm:gap-4">
           <div className="flex items-center gap-3 sm:gap-3.5 rounded-md border border-border/70 bg-card/40 px-3 py-1.5">
