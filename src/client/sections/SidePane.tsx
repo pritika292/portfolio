@@ -29,7 +29,7 @@ export function SidePane() {
           />
           <ProjectCard
             code="CR-03"
-            name="pg-inspector"
+            name="postgres-inspector"
             tagline="Postgres sandbox: pick one of five industry schemas, ask in English or write SQL, see the execution plan, get AI-drafted index recommendations. Three-layer SQL safety; Azure OpenAI via Managed Identity, no keys."
             tech={["TS", "Express", "React", "Postgres", "react-flow", "Azure OpenAI"]}
             href="https://pg.pritika.studio"

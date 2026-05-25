@@ -2,13 +2,7 @@
 // out — reads at 16px (favicon) and scales cleanly to 256px (apple touch
 // icon, OG card). Uses currentColor so it picks up the theme.
 
-export function LogoMark({
-  size = 24,
-  className,
-}: {
-  size?: number;
-  className?: string;
-}) {
+export function LogoMark({ size = 24, className }: { size?: number; className?: string }) {
   return (
     <svg
       width={size}
