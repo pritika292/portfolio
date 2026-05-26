@@ -11,16 +11,17 @@ export function Hero() {
           I build production systems from zero to one. Fast.
         </p>
         <p className="mt-6 max-w-content leading-relaxed">
-          Fullstack and backend distributed systems engineer. Four years across{" "}
-          <strong className="text-text">Paycom, VMware, and Microsoft</strong>, shipping real-time
-          platforms that serve <strong className="text-text">100k+ users</strong> with React,
-          Node.js, TypeScript, Kubernetes, Kafka, Redis, and MySQL.{" "}
-          <strong className="text-text">End-to-end builder who wants high ownership</strong>: the
-          API, the SQL plan, the React, the Dockerfile, and the deployment all from one person.{" "}
-          <strong className="text-text">AI-native developer workflow</strong>: Claude Code, Copilot
-          CLI, MCP servers, and custom agent skills shipped to production. Moves fast, ramps in
-          days, ships same week. Open to fullstack, backend, and distributed systems roles at top
-          startups.
+          Full-stack / backend engineer with 5 years across{" "}
+          <strong className="text-text">Paycom, VMware, and Microsoft</strong>. Built real-time
+          platforms serving <strong className="text-text">100k+ users</strong> with React, Node.js,
+          TypeScript, Kafka, Redis, MySQL, Kubernetes, and Docker. Comfortable{" "}
+          <strong className="text-text">
+            owning the full path from API and database design to frontend, deployment, and
+            production debugging
+          </strong>
+          . <strong className="text-text">AI-native workflow</strong> with Claude Code, Copilot CLI,
+          MCP servers, and custom agent skills. Open to full-stack, backend, and distributed systems
+          roles.
         </p>
         <p className="mt-4 text-muted font-mono text-[13px] tracking-wide">
           Full-stack · Backend · Distributed Systems · AI · San Francisco · Seattle · Austin
